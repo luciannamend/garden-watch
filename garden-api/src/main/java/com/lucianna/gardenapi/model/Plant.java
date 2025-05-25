@@ -20,13 +20,13 @@ public class Plant {
     @Column(name = "name", columnDefinition = "VARCHAR(100)", length = 100, nullable = false)
     private String name;
 
-    @Column(name = "min_humidity", columnDefinition = "DECIMAL(3,2)", scale = 3, precision = 2, nullable = false)
+    @Column(name = "min_humidity", columnDefinition = "DECIMAL(3,2)", nullable = false)
     private float minHumidity;
 
-    @Column(name = "avg_humidity", columnDefinition = "DECIMAL(3,2)", scale = 3, precision = 2, nullable = false)
+    @Column(name = "avg_humidity", columnDefinition = "DECIMAL(3,2)", nullable = false)
     private float avgHumidity;
 
-    @Column(name = "max_humidity", columnDefinition = "DECIMAL(3,2)",scale = 3, precision = 2, nullable = false)
+    @Column(name = "max_humidity", columnDefinition = "DECIMAL(3,2)", nullable = false)
     private float maxHumidity;
 
     @Column(name = "fruit", columnDefinition = "BOOLEAN", nullable = false)
