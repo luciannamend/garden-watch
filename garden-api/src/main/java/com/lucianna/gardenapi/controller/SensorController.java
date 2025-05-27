@@ -1,6 +1,5 @@
 package com.lucianna.gardenapi.controller;
 
-import com.lucianna.gardenapi.model.Plant;
 import com.lucianna.gardenapi.model.Sensor;
 import com.lucianna.gardenapi.service.SensorService;
 import lombok.RequiredArgsConstructor;
