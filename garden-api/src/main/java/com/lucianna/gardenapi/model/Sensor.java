@@ -24,7 +24,7 @@ public class Sensor {
     @Column(name = "type", columnDefinition = "VARCHAR(20)", length = 20, nullable = false)
     private SensorType type;
 
-    @ManyToOne(targetEntity = Plant.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Plant.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "plant_id", nullable = false)
     private Plant plant;
 }

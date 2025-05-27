@@ -25,7 +25,7 @@ public class SensorLog {
     @Column(name = "datetime", columnDefinition = "TIMESTAMP", nullable = false)
     private Instant dateTime;
 
-    @ManyToOne(targetEntity = Sensor.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Sensor.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "sensor_id", nullable = false)
     private Sensor sensor;
 }
