@@ -43,7 +43,7 @@ public class SensorLogSimulator {
 
         try {
             SensorDTO[] response = restTemplate.getForObject(sensorsUrl, SensorDTO[].class);
-            
+
             if (response != null) {
                 sensors.addAll(Arrays.asList(response));
             }
@@ -61,10 +61,7 @@ public class SensorLogSimulator {
         }
 
         for (SensorDTO sensor : sensors) {
-            final ResponseEntity<SensorLogDTO> sensorLogDTO = restTemplate.postForEntity(
-                    apiBaseUrl + "sensor-logs",
-                    buildSensorLog(sensor),
-                    SensorLogDTO.class);
+            final ResponseEntity<SensorLogDTO> sensorLogDTO = restTemplate.postForEntity(apiBaseUrl + "sensor-logs", buildSensorLog(sensor), SensorLogDTO.class);
 
             if (sensorLogDTO.getStatusCode().isError()) {
                 log.warn("Error posting sensor log: {}", sensorLogDTO.getStatusCode());
@@ -72,7 +69,7 @@ public class SensorLogSimulator {
         }
     }
 
-    private SensorLogDTO buildSensorLog(SensorDTO sensor) {
+    public SensorLogDTO buildSensorLog(SensorDTO sensor) {
         final SensorLogDTO sensorLog = new SensorLogDTO();
         sensorLog.setDateTime(Instant.now());
         sensorLog.setSensor(sensor);
