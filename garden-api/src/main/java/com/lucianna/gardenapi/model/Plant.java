@@ -8,6 +8,8 @@ import lombok.*;
 @RequiredArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "plant")
 public class Plant {
@@ -21,13 +23,13 @@ public class Plant {
     private String name;
 
     @Column(name = "min_humidity", columnDefinition = "DECIMAL(3,2)", nullable = false)
-    private float minHumidity;
+    private Float minHumidity;
 
     @Column(name = "avg_humidity", columnDefinition = "DECIMAL(3,2)", nullable = false)
-    private float avgHumidity;
+    private Float avgHumidity;
 
     @Column(name = "max_humidity", columnDefinition = "DECIMAL(3,2)", nullable = false)
-    private float maxHumidity;
+    private Float maxHumidity;
 
     @Column(name = "fruit", columnDefinition = "BOOLEAN", nullable = false)
     private boolean fruit;
