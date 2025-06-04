@@ -1,7 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS garden_watch;
 
-USE garden_watch;
-
 CREATE TABLE IF NOT EXISTS plant
 (
     id           INTEGER PRIMARY KEY   NOT NULL AUTO_INCREMENT,
