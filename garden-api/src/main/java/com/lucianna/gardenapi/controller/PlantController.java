@@ -18,7 +18,7 @@ public class PlantController {
 
     @PostMapping
     public ResponseEntity<Plant> save(@RequestBody Plant plant) {
-        return ResponseEntity.ok().body(plantService.save(plant));
+        return ResponseEntity.status(HttpStatus.CREATED).body(plantService.save(plant));
     }
 
     @GetMapping
