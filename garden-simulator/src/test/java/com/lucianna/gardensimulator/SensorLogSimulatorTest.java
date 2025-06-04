@@ -49,4 +49,11 @@ public class SensorLogSimulatorTest {
         //System.out.println("Log Value  >>>>>>>> " + log.getValue());
         assertTrue(log.getValue() >= 10f && log.getValue() <= 20f);
     }
+
+    @Test
+    void testSimulateSensorLogWithEmptySensors() {
+        // simulateSensorLog returns early if sensors list is empty.
+        simulator.simulateSensorLog(); // nothing should happen — just verify no exception
+    }
+
 }
