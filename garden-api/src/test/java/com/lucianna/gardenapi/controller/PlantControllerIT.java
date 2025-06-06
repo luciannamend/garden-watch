@@ -1,8 +1,8 @@
 package com.lucianna.gardenapi.controller;
 
 import com.lucianna.gardenapi.AbstractControllerTest;
-import com.lucianna.gardenapi.config.ApiPath;
 import com.lucianna.gardenapi.builder.Plants;
+import com.lucianna.gardenapi.config.ApiPath;
 import com.lucianna.gardenapi.model.Plant;
 import com.lucianna.gardenapi.repository.PlantRepository;
 import org.junit.jupiter.api.Test;
@@ -36,6 +36,7 @@ public class PlantControllerIT extends AbstractControllerTest {
 
         assertPlant(plant, savedPlant);
 
+        assertNotNull(savedPlant);
         final Plant existingPlant = plantRepository.findById(savedPlant.getId()).orElse(null);
 
         assertPlant(plant, existingPlant);
