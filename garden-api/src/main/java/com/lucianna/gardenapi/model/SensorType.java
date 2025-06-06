@@ -6,4 +6,6 @@ import lombok.RequiredArgsConstructor;
 public enum SensorType {
     TEMPERATURE,
     HUMIDITY,
+    LIGHT_INTENSITY,
+    SOIL_MOISTURE
 }
