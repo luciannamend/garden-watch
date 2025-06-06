@@ -2,6 +2,7 @@ package com.lucianna.gardenapi.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lucianna.gardenapi.ApiPath;
 import com.lucianna.gardenapi.builder.Plants;
 import com.lucianna.gardenapi.model.Plant;
 import com.lucianna.gardenapi.service.PlantService;
@@ -32,7 +33,7 @@ public class PlantControllerUnitTests {
         final int nonExistingPlantId = 1;
         when(plantService.existsById(eq(nonExistingPlantId))).thenReturn(false);
 
-        mockMvc.perform(delete("/api/v1/plants/" + nonExistingPlantId)).andExpect(status().isNotFound());
+        mockMvc.perform(delete(ApiPath.PLANTS + nonExistingPlantId)).andExpect(status().isNotFound());
     }
 
     @Test
@@ -40,6 +41,6 @@ public class PlantControllerUnitTests {
         final Plant nonExistingPlant = Plants.aPlant().build();
         when(plantService.existsById(eq(nonExistingPlant.getId()))).thenReturn(false);
 
-        mockMvc.perform(put("/api/v1/plants/").contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(nonExistingPlant))).andExpect(status().isNotFound());
+        mockMvc.perform(put(ApiPath.PLANTS).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(nonExistingPlant))).andExpect(status().isNotFound());
     }
 }

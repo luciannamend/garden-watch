@@ -1,6 +1,7 @@
 package com.lucianna.gardenapi.controller;
 
 import com.lucianna.gardenapi.AbstractControllerTest;
+import com.lucianna.gardenapi.ApiPath;
 import com.lucianna.gardenapi.builder.Plants;
 import com.lucianna.gardenapi.model.Plant;
 import com.lucianna.gardenapi.repository.PlantRepository;
@@ -27,7 +28,7 @@ public class PlantControllerIT extends AbstractControllerTest {
         final var plant = Plants.aPlant().id(null).build();
 
         // When
-        ResponseEntity<Plant> response = restTemplate.postForEntity("/api/v1/plants", plant, Plant.class);
+        ResponseEntity<Plant> response = restTemplate.postForEntity(ApiPath.PLANTS, plant, Plant.class);
 
         // Then
         assertEquals(HttpStatus.CREATED, response.getStatusCode());

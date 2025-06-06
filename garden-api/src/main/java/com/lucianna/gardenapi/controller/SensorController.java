@@ -1,5 +1,6 @@
 package com.lucianna.gardenapi.controller;
 
+import com.lucianna.gardenapi.ApiPath;
 import com.lucianna.gardenapi.model.Sensor;
 import com.lucianna.gardenapi.service.SensorService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/sensors")
+@RequestMapping(ApiPath.SENSORS)
 public class SensorController {
 
     private final SensorService sensorService;

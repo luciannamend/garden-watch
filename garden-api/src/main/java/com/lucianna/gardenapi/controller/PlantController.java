@@ -1,5 +1,6 @@
 package com.lucianna.gardenapi.controller;
 
+import com.lucianna.gardenapi.ApiPath;
 import com.lucianna.gardenapi.model.Plant;
 import com.lucianna.gardenapi.service.PlantService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/plants")
+@RequestMapping(ApiPath.PLANTS)
 public class PlantController {
 
     private final PlantService plantService;

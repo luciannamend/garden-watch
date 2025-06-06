@@ -1,5 +1,6 @@
 package com.lucianna.gardenapi.controller;
 
+import com.lucianna.gardenapi.ApiPath;
 import com.lucianna.gardenapi.model.SensorLog;
 import com.lucianna.gardenapi.service.SensorLogService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/sensor-logs")
+@RequestMapping(ApiPath.SENSOR_LOGS)
 public class SensorLogController {
     private final SensorLogService sensorLogService;
 
