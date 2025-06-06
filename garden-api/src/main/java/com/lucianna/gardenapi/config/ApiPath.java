@@ -1,4 +1,4 @@
-package com.lucianna.gardenapi;
+package com.lucianna.gardenapi.config;
 
 public class ApiPath {
     public static final String SENSORS = "/api/v1/sensors";

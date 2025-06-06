@@ -1,4 +1,4 @@
-package com.lucianna.gardensimulator.utils;
+package com.lucianna.gardensimulator.util;
 
 public class ArrayUtils {
 

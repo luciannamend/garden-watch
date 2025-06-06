@@ -1,7 +1,7 @@
 package com.lucianna.gardenapi.controller;
 
 import com.lucianna.gardenapi.AbstractControllerTest;
-import com.lucianna.gardenapi.ApiPath;
+import com.lucianna.gardenapi.config.ApiPath;
 import com.lucianna.gardenapi.builder.Plants;
 import com.lucianna.gardenapi.model.Plant;
 import com.lucianna.gardenapi.repository.PlantRepository;
