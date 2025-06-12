@@ -1,12 +1,10 @@
 package com.lucianna.gardensimulator.sensorlog;
 
-import com.lucianna.gardensimulator.model.PlantDTO;
-import com.lucianna.gardensimulator.model.SensorDTO;
-import com.lucianna.gardensimulator.model.SensorLogDTO;
+import com.lucianna.gardensimulator.config.GardenApiUrl;
+import com.lucianna.gardensimulator.model.*;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -18,17 +16,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
 @Slf4j
+@Component
 @RequiredArgsConstructor
 public class SensorLogSimulator {
 
     private final List<SensorDTO> sensors = new ArrayList<>();
     private final RestTemplate restTemplate;
     private final SecureRandom secureRandom;
-
-    @Value("${garden.api.url}")
-    private String apiBaseUrl;
 
     public SensorLogSimulator() {
         this.restTemplate = new RestTemplate();
@@ -39,7 +34,7 @@ public class SensorLogSimulator {
     public void init() {
         secureRandom.setSeed(Instant.now().toEpochMilli());
 
-        final var sensorsUrl = apiBaseUrl + "sensors";
+        final var sensorsUrl = GardenApiUrl.getSensorsUrl();
 
         try {
             SensorDTO[] response = restTemplate.getForObject(sensorsUrl, SensorDTO[].class);
@@ -54,14 +49,15 @@ public class SensorLogSimulator {
         }
     }
 
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 10000)
     public void simulateSensorLog() {
         if (sensors.isEmpty()) {
             return;
         }
 
         for (SensorDTO sensor : sensors) {
-            final ResponseEntity<SensorLogDTO> sensorLogDTO = restTemplate.postForEntity(apiBaseUrl + "sensor-logs", buildSensorLog(sensor), SensorLogDTO.class);
+            final ResponseEntity<SensorLogDTO> sensorLogDTO = restTemplate.postForEntity(GardenApiUrl.getSensorLogsUrl(),
+                    buildSensorLog(sensor), SensorLogDTO.class);
 
             if (sensorLogDTO.getStatusCode().isError()) {
                 log.warn("Error posting sensor log: {}", sensorLogDTO.getStatusCode());

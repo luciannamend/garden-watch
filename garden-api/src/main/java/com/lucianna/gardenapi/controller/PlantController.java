@@ -13,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(ApiPath.PLANTS)
+@CrossOrigin(origins = {"${garden-watch.client.url}"}, allowedHeaders = "*")
 public class PlantController {
 
     private final PlantService plantService;
