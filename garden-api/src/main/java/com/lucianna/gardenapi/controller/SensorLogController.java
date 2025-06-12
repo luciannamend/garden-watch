@@ -1,24 +1,33 @@
 package com.lucianna.gardenapi.controller;
 
-import com.lucianna.gardenapi.config.ApiPath;
 import com.lucianna.gardenapi.model.SensorLog;
 import com.lucianna.gardenapi.service.SensorLogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(ApiPath.SENSOR_LOGS)
+@RequestMapping(value = "${api.baseUrl}sensor-logs")
 public class SensorLogController {
     private final SensorLogService sensorLogService;
+    private final SimpMessagingTemplate messagingTemplate;
+
 
     @PostMapping
     public ResponseEntity<SensorLog> save(@RequestBody SensorLog sensorLog) {
-        return ResponseEntity.ok().body(sensorLogService.save(sensorLog));
+        // TODO: Send a websocket message to the client to update the plant's status'
+        final SensorLog savedSensorLog = sensorLogService.save(sensorLog);
+        messagingTemplate.convertAndSend(
+                "/topic/messages",
+                "Current humidity: " + sensorLog.getValue()
+        );
+
+        return ResponseEntity.ok().body(savedSensorLog);
     }
 
     @GetMapping
