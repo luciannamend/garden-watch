@@ -1,7 +1,10 @@
 package com.lucianna.gardensimulator.sensorlog;
 
 import com.lucianna.gardensimulator.config.GardenApiUrl;
-import com.lucianna.gardensimulator.model.*;
+import com.lucianna.gardensimulator.model.PlantDTO;
+import com.lucianna.gardensimulator.model.SensorDTO;
+import com.lucianna.gardensimulator.model.SensorLogDTO;
+import com.lucianna.gardensimulator.model.SensorType;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -56,8 +59,7 @@ public class SensorLogSimulator {
         }
 
         for (SensorDTO sensor : sensors) {
-            final ResponseEntity<SensorLogDTO> sensorLogDTO = restTemplate.postForEntity(GardenApiUrl.getSensorLogsUrl(),
-                    buildSensorLog(sensor), SensorLogDTO.class);
+            final ResponseEntity<SensorLogDTO> sensorLogDTO = restTemplate.postForEntity(GardenApiUrl.getSensorLogsUrl(), buildSensorLog(sensor), SensorLogDTO.class);
 
             if (sensorLogDTO.getStatusCode().isError()) {
                 log.warn("Error posting sensor log: {}", sensorLogDTO.getStatusCode());
@@ -66,17 +68,39 @@ public class SensorLogSimulator {
     }
 
     public SensorLogDTO buildSensorLog(SensorDTO sensor) {
+        final SensorType sensorType = sensor.getType();
+        final PlantDTO plant = sensor.getPlant();
+
         final SensorLogDTO sensorLog = new SensorLogDTO();
         sensorLog.setDateTime(Instant.now());
         sensorLog.setSensor(sensor);
+        sensorLog.setValue(getRandomValue(sensorType, plant));
 
-        final PlantDTO plant = sensor.getPlant();
-        final float randomValue = getRandomValue(plant.getMinHumidity(), plant.getMaxHumidity());
-        sensorLog.setValue(randomValue);
         return sensorLog;
     }
 
-    private float getRandomValue(float min, float max) {
+    private float getRandomValue(SensorType sensorType, PlantDTO plant) {
+        float min = 0;
+        float max = 0;
+
+        switch (sensorType) {
+            case TEMPERATURE:
+                min = plant.getMinTemperature();
+                max = plant.getMaxTemperature();
+                break;
+            case HUMIDITY:
+                min = plant.getMinHumidity();
+                max = plant.getMaxHumidity();
+                break;
+            case SOIL_MOISTURE:
+                min = plant.getMinSoilMoisture();
+                max = plant.getMaxSoilMoisture();
+                break;
+            default:
+                log.error("Sensor type {} not supported.", sensorType);
+                throw new IllegalArgumentException("Sensor type not supported.");
+        }
+
         return secureRandom.nextFloat(min, max);
     }
 }

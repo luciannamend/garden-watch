@@ -24,7 +24,7 @@ public class SensorLogController {
         final SensorLog savedSensorLog = sensorLogService.save(sensorLog);
         messagingTemplate.convertAndSend(
                 "/topic/messages",
-                "Current humidity: " + sensorLog.getValue()
+                "Sensor: " + sensorLog.getSensor().getName() + "Value: " + sensorLog.getValue()
         );
 
         return ResponseEntity.ok().body(savedSensorLog);
