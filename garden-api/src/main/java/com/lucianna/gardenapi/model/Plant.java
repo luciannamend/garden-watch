@@ -31,6 +31,24 @@ public class Plant {
     @Column(name = "max_humidity", columnDefinition = "DECIMAL(3,2)", nullable = false)
     private Float maxHumidity;
 
+    @Column(name = "min_temperature", columnDefinition = "DECIMAL(3,2)", nullable = false)
+    private Float minTemperature;
+
+    @Column(name = "avg_temperature", columnDefinition = "DECIMAL(3,2)", nullable = false)
+    private Float avgTemperature;
+
+    @Column(name = "max_temperature", columnDefinition = "DECIMAL(3,2)", nullable = false)
+    private Float maxTemperature;
+
+    @Column(name = "min_soil_moisture", columnDefinition = "DECIMAL(3,2)", nullable = false)
+    private Float minSoilMoisture;
+
+    @Column(name = "avg_soil_moisture", columnDefinition = "DECIMAL(3,2)", nullable = false)
+    private Float avgSoilMoisture;
+
+    @Column(name = "max_soil_moisture", columnDefinition = "DECIMAL(3,2)", nullable = false)
+    private Float maxSoilMoisture;
+
     @Column(name = "fruit", columnDefinition = "BOOLEAN", nullable = false)
     private boolean fruit;
 }
