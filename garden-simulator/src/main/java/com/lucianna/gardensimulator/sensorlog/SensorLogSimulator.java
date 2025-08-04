@@ -52,7 +52,7 @@ public class SensorLogSimulator {
         }
     }
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 50000)
     public void simulateSensorLog() {
         if (sensors.isEmpty()) {
             return;
