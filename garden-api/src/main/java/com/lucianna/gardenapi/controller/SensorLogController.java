@@ -2,6 +2,7 @@ package com.lucianna.gardenapi.controller;
 
 import com.lucianna.gardenapi.config.ApiPath;
 import com.lucianna.gardenapi.model.SensorLog;
+import com.lucianna.gardenapi.model.SensorLogWsMessage;
 import com.lucianna.gardenapi.service.SensorLogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,12 +25,15 @@ public class SensorLogController {
     public ResponseEntity<SensorLog> save(@RequestBody SensorLog sensorLog) {
 
         final SensorLog savedSensorLog = sensorLogService.save(sensorLog);
-        Map<String, Object> message = new HashMap<>();
-        message.put("sensor", sensorLog.getSensor().getType());
-        message.put("plantId", sensorLog.getSensor().getPlant().getId());
-        message.put("value", sensorLog.getValue());
 
-        messagingTemplate.convertAndSend("/topic/messages", message);
+        final SensorLogWsMessage sensorLogMessage = SensorLogWsMessage.builder()
+                .sensorType(sensorLog.getSensor().getType())
+                .plantId(sensorLog.getSensor().getPlant().getId())
+                .value(sensorLog.getValue())
+                .dateTime(savedSensorLog.getDateTime())
+                .build();
+
+        messagingTemplate.convertAndSend("/events/sensor-logs", sensorLogMessage);
 
         return ResponseEntity.ok().body(savedSensorLog);
     }

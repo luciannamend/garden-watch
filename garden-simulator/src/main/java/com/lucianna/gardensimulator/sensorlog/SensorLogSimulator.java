@@ -46,6 +46,10 @@ public class SensorLogSimulator {
                 sensors.addAll(Arrays.asList(response));
             }
 
+            if (sensors.isEmpty()) {
+                throw new RuntimeException("No sensors found in the API %s check if `initial-data.sql` was executed in the DB".formatted(sensorsUrl));
+            }
+
         } catch (Exception e) {
             log.error("Could not connect to the API {}, check immediately.", sensorsUrl);
             throw new RuntimeException(e.getMessage());
@@ -58,12 +62,16 @@ public class SensorLogSimulator {
             return;
         }
 
-        for (SensorDTO sensor : sensors) {
-            final ResponseEntity<SensorLogDTO> sensorLogDTO = restTemplate.postForEntity(GardenApiUrl.getSensorLogsUrl(), buildSensorLog(sensor), SensorLogDTO.class);
+        try {
+            for (SensorDTO sensor : sensors) {
+                final ResponseEntity<SensorLogDTO> sensorLogDTO = restTemplate.postForEntity(GardenApiUrl.getSensorLogsUrl(), buildSensorLog(sensor), SensorLogDTO.class);
 
-            if (sensorLogDTO.getStatusCode().isError()) {
-                log.warn("Error posting sensor log: {}", sensorLogDTO.getStatusCode());
+                if (sensorLogDTO.getStatusCode().isError()) {
+                    log.error("Error posting sensor log: {}", sensorLogDTO.getStatusCode());
+                }
             }
+        } catch (Exception e) {
+            log.error("Error posting sensor logs: {}", e.getMessage());
         }
     }
 

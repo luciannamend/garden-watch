@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "7a34671d-fc0c-46f2-9f14-88095acc0178",
+		"name": "Garden Watch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1039196"
+	},
+	"item": [
+		{
+			"name": "Plants",
+			"item": [
+				{
+					"name": "Plants - Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/plants",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"plants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plants - Find by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/plants/1",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"plants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plants - Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cherry\",\r\n    \"minHumidity\": 0.0,\r\n    \"avgHumidity\": 0.5,\r\n    \"maxHumidity\": 0.8,\r\n    \"minTemperature\": 0.0,\r\n    \"avgTemperature\": 0.5,\r\n    \"maxTemperature\": 0.8,\r\n    \"minSoilMoisture\": 0.0,\r\n    \"avgSoilMoisture\": 0.5,\r\n    \"maxSoilMoisture\": 0.8,\r\n    \"fruit\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/plants",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"plants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plants - Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 5,\r\n    \"name\": \"Cherry\",\r\n    \"minHumidity\": 0.0,\r\n    \"avgHumidity\": 0.5,\r\n    \"maxHumidity\": 0.9,\r\n    \"minTemperature\": 0.0,\r\n    \"avgTemperature\": 0.5,\r\n    \"maxTemperature\": 0.8,\r\n    \"minSoilMoisture\": 0.0,\r\n    \"avgSoilMoisture\": 0.5,\r\n    \"maxSoilMoisture\": 0.8,\r\n    \"fruit\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/plants",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"plants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plants - Delete By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/plants/5",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"plants",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SensorLogs",
+			"item": [
+				{
+					"name": "SensorLogs - Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensor-logs",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensor-logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SensorLogs - Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensor-logs/1",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensor-logs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SensorLogs - Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": \"0.3\",\r\n    \"dateTime\": \"2025-01-01T00:00:00Z\",\r\n    \"sensor\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensor-logs",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensor-logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SensorLogs - Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"value\": \"0.4\",\r\n    \"dateTime\": \"2025-01-01T00:00:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensor-logs",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensor-logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SensorLogs - Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensor-logs/1",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensor-logs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sensors",
+			"item": [
+				{
+					"name": "Sensors - Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensors",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sensors - Find by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensors/1",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sensors - Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cherry sensor\",\r\n    \"type\": \"HUMIDITY\",\r\n    \"plant\": {\r\n        \"id\": 5\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensors",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sensors - Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Cherry sensor\",\r\n    \"type\": \"HUMIDITY\",\r\n    \"plant\": {\r\n        \"id\": 5\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensors",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sensors - Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{garden_watch_local_api_url}}/sensors/1",
+							"host": [
+								"{{garden_watch_local_api_url}}"
+							],
+							"path": [
+								"sensors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "garden_watch_local_api_url",
+			"value": "http://localhost:8080/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "garden_watch_local_ws_url",
+			"value": "ws:localhost",
+			"type": "string"
+		}
+	]
+}

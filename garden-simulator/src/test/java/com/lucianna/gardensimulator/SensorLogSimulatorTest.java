@@ -53,7 +53,7 @@ public class SensorLogSimulatorTest {
     @Test
     void testSimulateSensorLogWithEmptySensors() {
         // simulateSensorLog returns early if sensors list is empty.
-        simulator.simulateSensorLog(); // nothing should happen — just verify no exception
+        assertDoesNotThrow(simulator::simulateSensorLog); // nothing should happen — just verify no exception
     }
 
 }

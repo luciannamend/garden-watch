@@ -13,17 +13,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     // STOMP endpoints
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        // endpoint que o websocket vai escutar todas as comunicações
-        // change /chat to /websocket
-        registry.addEndpoint("/chat").setAllowedOrigins("*");
-        registry.addEndpoint("/chat").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/notifications").setAllowedOrigins("*");
+        registry.addEndpoint("/notifications").setAllowedOrigins("*").withSockJS();
     }
 
     // Config message broker options
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/topic"); // /plants -> /humidity
-        registry.setApplicationDestinationPrefixes("/app"); // garden-watch
+        registry.enableSimpleBroker("/events");
     }
-
 }
